@@ -14,7 +14,17 @@ export default function buildPlugins({ paths, isDev }) {
 		}),
 		new webpack.DefinePlugin({
 			__IS_DEV__: JSON.stringify(isDev),
+			'process.env': {
+				OW_API_KEY: JSON.stringify('f5d2d80eff349ead94bf4fa054dbef9c'),
+				OW_API_URL_CURRENT: JSON.stringify(
+					'https://api.openweathermap.org/data/2.5/weather'
+				),
+				OW_API_URL_FORECAST: JSON.stringify(
+					'https://api.openweathermap.org/data/2.5/forecast'
+				),
+			},
 		}),
+		new webpack.EnvironmentPlugin({ ...process.env }),
 		new webpack.HotModuleReplacementPlugin(),
 	];
 }
